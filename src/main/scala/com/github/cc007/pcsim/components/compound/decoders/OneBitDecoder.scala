@@ -26,5 +26,5 @@ class OneBitDecoder(val wPower: Input, val wIn: Input, wZero: Output, wOne: Outp
   protected val wInnerZero = new Wire
   this += new NOTGate(wPower, wIn, wZero, threshold)
   this += new NOTGate(wPower, wInnerZero, wOne, threshold)
-  this += new Diode(wInnerZero, wZero)
+  this += new Diode(wInnerZero, wZero, 0.0)
 }

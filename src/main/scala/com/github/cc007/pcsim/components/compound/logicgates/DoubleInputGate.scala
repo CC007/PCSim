@@ -13,6 +13,6 @@ import com.github.cc007.pcsim.io.container.output.SingleOutput
 import com.github.cc007.pcsim.io.wires.Input
 import com.github.cc007.pcsim.io.wires.Output
 
-abstract class DoubleInputGate(val wPower: Input, val wA: Input, val wB: Input, val wOut: Output) extends CompoundComponent with PowerInput with DoubleInput with SingleOutput  {
+abstract class DoubleInputGate(val wPower: Input, val wA: Input, val wB: Input, val wOut: Output) extends LogicGate with PowerInput with DoubleInput with SingleOutput  {
 
 }

@@ -6,6 +6,7 @@
 
 package com.github.cc007.pcsim.components.compound.adders
 
+import com.github.cc007.pcsim.components.Named
 import com.github.cc007.pcsim.components.compound.CompoundComponent
 import com.github.cc007.pcsim.components.compound.logicgates.ANDGate
 import com.github.cc007.pcsim.components.compound.logicgates.XORGate
@@ -16,10 +17,16 @@ import com.github.cc007.pcsim.io.wires.Input
 import com.github.cc007.pcsim.io.wires.Output
 
 import scala.collection.mutable
-import scala.collection.mutable.HashMap
 
-class HalfAdder(val wPower:Input, val wA:Input, val wB:Input, wSum:Output, wCarry:Output, threshold:Double) extends CompoundComponent with PowerInput with DoubleInput with MultipleOutput {
+class HalfAdder(val wPower:Input, val wA:Input, val wB:Input, wSum:Output, wCarry:Output, threshold:Double) extends CompoundComponent with PowerInput with DoubleInput with MultipleOutput with Named {
+  val inputs: mutable.HashMap[String, Input] = mutable.HashMap()
   val outputs:mutable.HashMap[String, Output] = mutable.HashMap()
+
+  var name = "Half adder"
+  var subName = ""
+
+  inputs("wA") = wA
+  inputs("wB") = wB
   outputs("wSum") = wSum
   outputs("sCarry") = wCarry
   this += new XORGate(wPower, wA, wB, wSum, threshold)

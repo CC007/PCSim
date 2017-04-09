@@ -14,6 +14,6 @@ import com.github.cc007.pcsim.io.container.output.SingleOutput
 import com.github.cc007.pcsim.io.wires.Input
 import com.github.cc007.pcsim.io.wires.Output
 
-class NOTGate(val wPower: Input, val wIn: Input, val wOut: Output, threshold: Double) extends CompoundComponent with PowerInput with SingleInput with SingleOutput {
+class NOTGate(val wPower: Input, val wIn: Input, val wOut: Output, threshold: Double) extends LogicGate with PowerInput with SingleInput with SingleOutput {
   this += new pMOS(wPower, wIn, wOut, threshold)
 }

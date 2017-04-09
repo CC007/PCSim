@@ -6,16 +6,18 @@
 
 package com.github.cc007.pcsim.components.primitive.passive
 
-import com.github.cc007.pcsim.components.Component
+import com.github.cc007.pcsim.components.{Component, Named}
 import com.github.cc007.pcsim.io.connection.OutputConnection
 import com.github.cc007.pcsim.io.container.output.SingleOutput
 import com.github.cc007.pcsim.io.wires.Output
 
-class VoltageSource(val wOut:Output) extends Component with SingleOutput {
+class VoltageSource(val wOut:Output) extends Component with SingleOutput with Named {
   protected val out = new OutputConnection(wOut)
-  
-  @deprecated("Only using the setter is supported", "2000-01-01")
-  def voltage:Double = 0.0
+  var name = "Vsource"
+  var subName = "⎓"
+
+  @throws(classOf[UnsupportedOperationException])
+  def voltage:Nothing  = throw new UnsupportedOperationException("Only using the setter is supported");
   
   def voltage_=(voltage: Double) = out.voltage_=(voltage)
   

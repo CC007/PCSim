@@ -9,9 +9,9 @@ package com.github.cc007.pcsim.io.connection
 import com.github.cc007.pcsim.io.wires.Output
 
 class OutputConnection(output: Output) extends Connection(output) {
-  
-  @deprecated("Only using the setter is supported", "2000-01-01")
-  def voltage:Double = 0.0
+
+  @throws(classOf[UnsupportedOperationException])
+  def voltage:Nothing  = throw new UnsupportedOperationException("Only using the setter is supported");
   
   def voltage_=(voltage: Double) {
     output.voltage = (connection, voltage)

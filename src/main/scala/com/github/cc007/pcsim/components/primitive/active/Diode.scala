@@ -15,12 +15,16 @@ import com.github.cc007.pcsim.io.wires.Input
 import com.github.cc007.pcsim.io.wires.Output
 import com.github.cc007.pcsim.utils.PrimitiveActive
 
-class Diode(val wIn: Input, val wOut: Output) extends Component with PrimitiveActive with SingleInput with SingleOutput {
+class Diode(val wIn: Input, val wOut: Output, val voltageDrop:Double) extends Component with PrimitiveActive with SingleInput with SingleOutput {
   protected val in = new InputConnection(wIn)
   protected val out = new OutputConnection(wOut)
 
+  def this(wIn: Input, wOut: Output){
+    this(wIn, wOut, 0.0)
+  }
+
   override def loop() {
-    out.voltage = in.voltage
+    out.voltage = in.voltage - voltageDrop
   }
 
   override def disconnect() {

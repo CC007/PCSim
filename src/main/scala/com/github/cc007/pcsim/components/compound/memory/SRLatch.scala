@@ -19,7 +19,7 @@ import com.github.cc007.pcsim.io.wires.Wire
 import scala.collection.mutable
 import scala.collection.mutable.HashMap
 
-class SRLatch(val wPower:Input, wS:Input, wR:Input, wQ:Output, wNQ:Output, threshold:Double) extends CompoundComponent with PowerInput with MultipleInput with MultipleOutput {
+class SRLatch(val wPower: Input, wS: Input, wR: Input, wQ: Output, wNQ: Output, threshold: Double) extends CompoundComponent with PowerInput with MultipleInput with MultipleOutput {
   val inputs: mutable.HashMap[String, Input] = mutable.HashMap()
   val outputs: mutable.HashMap[String, Output] = mutable.HashMap()
   inputs("wS") = wS
@@ -30,7 +30,7 @@ class SRLatch(val wPower:Input, wS:Input, wR:Input, wQ:Output, wNQ:Output, thres
   protected val wNQInner = new Wire
   this += new NORGate(wPower, wS, wQInner, wNQInner, threshold)
   this += new NORGate(wPower, wR, wNQInner, wQInner, threshold)
-  this += new Diode(wQInner, wQ)
-  this += new Diode(wNQInner, wNQ)
+  this += new Diode(wQInner, wQ, 0.0)
+  this += new Diode(wNQInner, wNQ, 0.0)
 }
 
